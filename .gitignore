@@ -1,0 +1,9 @@
+*
+
+!*/
+!.gitignore
+!main.py
+!Window.py
+!World.py
+!Organisms/
+!Organisms/**
