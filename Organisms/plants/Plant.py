@@ -9,6 +9,7 @@ class Plant(Animal):
         super().__init__(x,y, world)
         self._shift_range = 0
         self._initiative = 0
+        self._strength = 0
 
     def isPlant(self):
         return True
@@ -23,7 +24,7 @@ class Plant(Animal):
             
     def action(self):
 
-        probability = random.randint(0,50)
+        probability = random.randint(0,30)
 
         if probability == 3:
             self._reproduction_attempt(self)

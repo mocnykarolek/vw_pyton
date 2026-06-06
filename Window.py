@@ -78,14 +78,35 @@ class Window:
 
 
                 if grid[i][j] != None:
-                    print(i, j)
                     color = ""
                     if grid[i][j].getColor() == "pink":
-                        color = "pink"
+                        color = "deeppink"
                     elif grid[i][j].getColor() == "grey":
                         color = "grey"
-                        print("tset")
-                    # dokonczyc koklory
+                    elif grid[i][j].getColor() == "sheepy":
+                        color = "bisque"
+                    elif grid[i][j].getColor() == "orange":
+                        color = "darkorange"
+                    elif grid[i][j].getColor() == "blue":
+                        color = "blue"
+                    elif grid[i][j].getColor() == "magenta":
+                        color = "magenta"
+                    elif grid[i][j].getColor() == "green":
+                        color = "forestgreen"
+                    elif grid[i][j].getColor() == "yellow":
+                        color = "gold"
+                    elif grid[i][j].getColor() == "cyan":
+                        color = "darkcyan"
+                    elif grid[i][j].getColor() == "darkRed":
+                        color = "darkred"
+                    elif grid[i][j].getColor() == "lightGray":
+                        color = "lightgray"
+                    elif grid[i][j].getColor() == "lightPink":
+                        color = "lightpink"
+                    else:
+                        color = "black"
+
+
 
                     self.__canvas.create_rectangle(x, y, x1, y1, fill=color)
 
@@ -105,11 +126,11 @@ class Window:
         new_round_button.grid(row=2, column=0)
 
         # load button
-        load_button = tk.Button(self.__root, text="Load", command="")
+        load_button = tk.Button(self.__root, text="Load", command=self.__world.LoadFromFile)
         load_button.grid(row=1, column=1)
 
         # save button
-        save_button = tk.Button(self.__root, text="Save", command="")
+        save_button = tk.Button(self.__root, text="Save", command=self.__world.SaveToFile)
         save_button.grid(row=1, column=2)
 
 
@@ -143,9 +164,10 @@ class Window:
 
             self.setHumanNextMove("Right")
 
-        elif event.keysym == "enter":
+        elif event.keysym == "Return":
 
-            self.setHumanNextMove("special")
+            self.__world.setSpecialAbility(True)
+            self.addLog("Special Ability queued")
 
         elif event.keysym == "space":
             self.__new_round()

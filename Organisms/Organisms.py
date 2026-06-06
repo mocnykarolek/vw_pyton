@@ -11,6 +11,7 @@ class Organism:
         def __init__(self, x, y, world):
 
             self._age = 0
+            self._Name = ""
             self._alive = False
             self._initiative = None
             self._shift_range = 0
@@ -24,6 +25,7 @@ class Organism:
             self._y = y
             self._world = world
             self._can_organism_move = True
+            
 
         def incrementAge(self):
             self._age += 1
@@ -36,6 +38,9 @@ class Organism:
 
         def isPlant(self):
             return False
+
+        def getName(self):
+            return self._Name
 
         def _randomMove(self):
 
@@ -114,13 +119,16 @@ class Organism:
             else: # combat
 
 
-                if other.isAttackBlocked(self):
+                if other._isAttackBlocked(self):
                     self._can_organism_move = False
                     self._world.addLog("Dodged")
                 elif self.getStrength() >= other.getStrength():
-                    other.eatenPlant(self)
+                    other._eatenPlant(self)
                     other.kill()
                 else:
                     if other.isPlant():
-                        other.eatenPlant(self)
+                        other._eatenPlant(self)
                     self.kill()
+
+        def saveHuman(self):
+            pass
